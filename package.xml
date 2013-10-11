@@ -1,0 +1,18 @@
+<package>
+    <name>VisionTools</name>
+    <version>0.1.0</version>
+    <description>
+        Small library with various (visualization) tools in the context of computer 
+        vision.
+    </description>
+    <maintainer email="contradict@gmail.com">contradict</maintainer>
+    <license>MIT</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <build_depend>Pangolin</build_depend>
+    <build_depend>Sophus</build_depend>
+
+    <run_depend>Pangolin</run_depend>
+    <run_depend>Sophus</run_depend>
+</package>
