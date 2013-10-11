@@ -23,14 +23,10 @@
 #ifndef VISIONTOOLS_DRAW3D_H
 #define VISIONTOOLS_DRAW3D_H
 
+#include <sophus/se3.hpp>
+#include <sophus/sim3.hpp>
 #include "gl_data.h"
 #include "linear_camera.h"
-
-namespace Sophus
-{
-class SE3;
-class Sim3;
-}
 
 namespace VisionTools
 {
@@ -40,14 +36,14 @@ struct Draw3d
 {
   static void
   activate                   (const LinearCamera & cam,
-                              const SE3 & T_cw);
+                              const SE3d & T_cw);
   static void
   ball                       (const Vector3d & p1,
                               double radius,
                               GLUquadric * quad);
   static void
   points                     (const vector<GlPoint3f> & xyz_here,
-                              const SE3 & T_world_from_here,
+                              const SE3d & T_world_from_here,
                               double pixel_size);
   static void
   points                     (const vector<GlPoint3f> & point_vec,
@@ -55,7 +51,7 @@ struct Draw3d
   static void
   coloredPoints              (const vector<GlPoint3f> & xyz_here,
                               const vector<GlPoint4f> & color_vec,
-                              const SE3 & T_world_from_here,
+                              const SE3d & T_world_from_here,
                               double pixel_size);
   static void
   coloredPoints              (const vector<GlPoint3f> & point_vec,
@@ -65,10 +61,10 @@ struct Draw3d
   point                      (const GlPoint3f & point,
                               double pixel_size);
   static void
-  pose                       (const SE3 & T_world_from_cam, double size = 0.1);
+  pose                       (const SE3d & T_world_from_cam, double size = 0.1);
 
   static void
-  pose                       (const Sim3 & T_world_from_cam, double size = 0.1);
+  pose                       (const Sim3d & T_world_from_cam, double size = 0.1);
 
   static void
   line                       (const Vector3d & p1, const Vector3d & p2);

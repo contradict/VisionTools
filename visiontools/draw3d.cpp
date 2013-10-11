@@ -23,8 +23,8 @@
 #include <iostream>
 #include <Eigen/Eigenvalues>
 
-#include <sophus/se3.h>
-#include <sophus/sim3.h>
+#include <sophus/se3.hpp>
+#include <sophus/sim3.hpp>
 
 #include "draw3d.h"
 
@@ -39,7 +39,7 @@ glTranslate( const Vector3d & v)
 
 void Draw3d
 ::activate(const LinearCamera & cam,
-         const SE3 & T_cw)
+         const SE3d & T_cw)
 {
   glShadeModel(GL_FLAT);
   glMatrixMode(GL_PROJECTION);
@@ -85,7 +85,7 @@ void Draw3d
 
 void Draw3d
 ::points(const vector<GlPoint3f> & xyz_here,
-       const SE3 & T_world_from_here,
+       const SE3d & T_world_from_here,
        double pixel_size)
 {
   glPushMatrix();
@@ -115,7 +115,7 @@ void Draw3d
 void Draw3d
 ::coloredPoints(const vector<GlPoint3f> & xyz_here,
               const vector<GlPoint4f> & color_vec,
-              const SE3 & T_world_from_here,
+              const SE3d & T_world_from_here,
               double pixel_size)
 {
   glPushMatrix();
@@ -164,7 +164,7 @@ void Draw3d
 }
 
 void Draw3d
-::pose(const SE3 & T_world_from_cam, double size)
+::pose(const SE3d & T_world_from_cam, double size)
 {
   glPushMatrix();
   const Vector3d & center = T_world_from_cam.translation();
@@ -196,14 +196,14 @@ void Draw3d
 }
 
 void Draw3d
-::pose(const Sim3 & T_world_from_cam, double size)
+::pose(const Sim3d & T_world_from_cam, double size)
 {
   glPushMatrix();
   const Vector3d & center = T_world_from_cam.translation();
 
   glTranslate(center);
 
-  Vector4d axis_angle_scale = T_world_from_cam.scso3().log();
+  Vector4d axis_angle_scale = T_world_from_cam.rxso3().log();
   double angle = axis_angle_scale.head<3>().norm();
   if(angle != 0.)
   {
