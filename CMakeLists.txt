@@ -6,7 +6,6 @@ find_package(catkin REQUIRED
 
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMakeModules/")
 
-SET (OpenCV_DIR ${CMAKE_PREFIX_PATH}/share/OpenCV)
 
 SET (CMAKE_VERBOSE_MAKEFILE ON)
 
@@ -24,7 +23,8 @@ ENDIF()
 
 
 
-#FIND_PACKAGE(OpenCV REQUIRED)
+SET (OpenCV_DIR /usr/local/share/OpenCV)
+FIND_PACKAGE(OpenCV 2.4.7 REQUIRED)
 FIND_PACKAGE(Eigen3 REQUIRED)
 
 catkin_package(
